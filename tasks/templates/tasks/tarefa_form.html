@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block page_title %}
+    {%if tarefa.pk%}
+        Editar tarefa
+    {%else%}
+        Nova tarefa
+    {%endif%}
+{% endblock page_title %}
+
+{% block content %}
+    {%if tarefa.pk%}
+        <h1>Editar tarefa</h1>
+    {%else%}
+        <h1>Nova tarefa</h1>
+    {%endif%}
+
+<form method="post">
+    {% csrf_token %}
+
+    {{ form|crispy }}
+
+    <button type="submit" class="btn btn-sm btn-primary">Salvar</button>
+    <a href="{% url 'tarefa_list' %}" class="btn btn-sm btn-danger">Cancelar</a>
+</form>
+
+{% endblock content %}

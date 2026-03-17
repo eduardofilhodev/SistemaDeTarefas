@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+Lista de tarefas
+{% endblock page_title %}
+
+{% block content %} <h1>Lista de tarefas</h1>
+
+<form method="get" class="mb-3">
+    <label for="ordenar" class="form-label">Ordenar por:</label>
+    <select name="ordenar" id="ordenar" class="form-select w-auto d-inline-block">
+        <option value="deadline">Prazo mais próximo</option>
+        <option value="-deadline">Prazo mais distante</option>
+        <option value="nome">Ordem alfabética (A-Z)</option>
+        <option value="-nome">Ordem alfabética (Z-A)</option>
+        <option value="data_criacao">Data de criação</option>
+    </select>
+
+    <button type="submit" class="btn btn-sm btn-secondary">
+        Aplicar
+    </button>
+</form>
+
+{% if tarefa_list %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Titulo</th>
+                <th scope="col">Descrição da tarefa</th>
+                <th scope="col">Criada em</th>
+                <th scope="col">Data de entrega</th>
+                <th scope="col">Finalizada em</th>
+                <th scope="col">Acções</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tarefa in tarefa_list %}
+                <tr>
+                    <th scope="row">{{ tarefa.pk }}</th>
+                    <td>{{ tarefa.nome }}</td>
+                    <td>{{ tarefa.descricao }}</td>
+                    <td>{{ tarefa.data_criacao }}</td>
+                    <td>{{ tarefa.deadline|default:"-" }}</td>
+                    <td>{{ tarefa.data_conclusao|default:"-" }}</td>
+                    <td>
+                        <a href="{% url 'tarefa_complete' pk=tarefa.pk %}"
+                           class="btn btn-sm btn-primary {% if tarefa.data_conclusao %}disabled{% endif %}">
+                            Concluir
+                        </a>
+
+                        <a href="{% url 'tarefa_update' pk=tarefa.pk %}"
+                           class="btn btn-sm btn-secondary {% if tarefa.data_conclusao %}disabled{% endif %}">
+                            Editar
+                        </a>
+
+                        <a href="{% url 'tarefa_delete' pk=tarefa.pk %}" class="btn btn-sm btn-danger">
+                            Excluir
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>Nenhuma tarefa encontrada.</p>
+{% endif %}
+
+<a href="{% url 'tarefa_create' %}" class="btn btn-primary">Nova tarefa</a>
+
+
+{% endblock content %}
