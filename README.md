@@ -84,6 +84,11 @@ Projeto desenvolvido com foco em prática de:
 
 ---
 
-## 📷 Preview
+## 📷 
 
-*(adicione prints do sistema aqui)*
+<img width="1914" height="793" alt="image" src="https://github.com/user-attachments/assets/4544cb01-05b3-43d9-aa3e-29c203693b90" />
+<img width="1894" height="918" alt="image" src="https://github.com/user-attachments/assets/ca58d032-33ff-4d2b-a5c2-8ebc9877c76c" />
+<img width="1914" height="321" alt="image" src="https://github.com/user-attachments/assets/d4a7abbb-f7d2-493e-8016-457161ba25f5" />
+
+
+
